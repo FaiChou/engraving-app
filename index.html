@@ -45,6 +45,36 @@
 #system-font-use{background:var(--yellow)}
 #system-font-use:disabled{background:#eee;box-shadow:none;color:#999}
 @media(max-width:760px){.font-actions .import-button{min-height:40px}#system-font-dialog{padding:18px}#system-font-search,#system-font-list{font-size:16px}#system-font-list{height:235px}}
+.preview-toolbar{flex-wrap:wrap}
+.view-switch{flex-shrink:0}
+.badge-settings{margin-top:17px;padding:12px;border:1.5px solid var(--ink);background:#fff9e6}
+.badge-source-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+#badge-source{font-size:11px;font-weight:750;overflow-wrap:anywhere;min-width:0}
+.badge-reset{border:0;background:none;padding:3px 0;text-decoration:underline;text-underline-offset:3px;font-size:11px;white-space:nowrap}
+.badge-reset:disabled{color:var(--muted);text-decoration:none}
+.badge-upload-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:9px}
+.badge-upload-actions .import-button{display:inline-flex;align-items:center;min-height:32px;background:#fffefa}
+.badge-upload-actions .import-button:first-child{background:var(--cyan)}
+#badge-message{font-size:11px;line-height:1.6;margin-top:7px;overflow-wrap:anywhere}
+#badge-message.error{color:var(--error)}
+.stage.image-mode{padding:34px 25px 30px;min-height:380px;background:radial-gradient(ellipse at 50% 40%,#fffdf6 0%,#ede9db 100%)}
+.image-badge{--badge-ratio:.95;--badge-radius:3%;display:block;position:relative;width:min(100%,calc(var(--badge-ratio) * 310px),390px);aspect-ratio:var(--badge-ratio);padding:0;border:0;background:none;perspective:1100px;isolation:isolate;-webkit-tap-highlight-color:transparent}
+.badge-rotor{display:block;position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(0deg);transition:transform .75s cubic-bezier(.22,.7,.22,1)}
+.image-badge.is-front .badge-rotor{transform:rotateY(180deg)}
+.badge-face{position:absolute;inset:0;display:block;border-radius:var(--badge-radius);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#d9bd78;box-shadow:0 0 0 1px #80652f,1px 2px 0 1px #8b6c32,2px 4px 0 1px #b89751,0 13px 20px #40341f2e;transform:translateZ(2px)}
+.badge-face::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px #fff4c899,inset 0 0 0 4px #9c78382b;background:linear-gradient(125deg,#ffffff14,transparent 40%,#ffffff0a 62%,transparent)}
+.badge-front{transform:rotateY(180deg) translateZ(2px)}
+.badge-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;user-select:none}
+.stage .badge-face svg{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;filter:none;overflow:hidden;background:none}
+.image-badge.silver .badge-face{background:#d8dcd9;box-shadow:0 0 0 1px #747b77,1px 2px 0 1px #8d9590,2px 4px 0 1px #b8bfba,0 13px 20px #27332c2e}
+.badge-flip-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+#badge-side-label{font-size:11px;color:var(--muted)}
+#flip-badge{border:2px solid var(--ink);padding:7px 11px;background:var(--yellow);box-shadow:2px 2px 0 var(--ink);font-size:12px;font-weight:750}
+#flip-badge:hover{background:#ffea92}
+.stage.image-mode .empty-preview{z-index:1;background:#fffefaeb;inset:auto 12px 12px;padding:8px;border:1px dashed #aaa18b;font-size:11px}
+.stage[aria-busy=true] #image-badge{visibility:hidden}
+@media(max-width:760px){.badge-upload-actions .import-button{min-height:40px}.stage.image-mode{min-height:340px;padding:28px 20px}.image-badge{width:min(100%,calc(var(--badge-ratio) * 280px),360px)}#flip-badge{min-height:40px}.view-switch button{padding:10px 11px}.badge-reset{min-height:32px}}
+@media(prefers-reduced-motion:reduce){.badge-rotor{transition:none}}
 </style>
 </head>
 <body>
@@ -76,9 +106,9 @@ See you again</textarea>
 
     <div class="section-heading"><h2><span>03</span>画布与排版</h2></div>
     <div class="fields two">
-      <label>徽章形状<select id="shape"><option value="circle">圆形</option><option value="rect">长方形 / 方形</option></select></label>
-      <label><span id="width-label">直径</span><span class="unit-input"><input id="width" type="number" min="5" max="200" step="0.5" value="25" inputmode="decimal"><span>mm</span></span></label>
-      <label id="height-field" hidden>高度<span class="unit-input"><input id="height" type="number" min="5" max="200" step="0.5" value="25" inputmode="decimal"><span>mm</span></span></label>
+      <label>徽章形状<select id="shape"><option value="circle">圆形</option><option value="rect" selected>长方形 / 方形</option></select></label>
+      <label><span id="width-label">宽度</span><span class="unit-input"><input id="width" type="number" min="5" max="200" step="0.5" value="25" inputmode="decimal"><span>mm</span></span></label>
+      <label id="height-field">高度<span class="unit-input"><input id="height" type="number" min="5" max="200" step="0.5" value="26.5" inputmode="decimal"><span>mm</span></span></label>
       <label>边缘留白<span class="unit-input"><input id="margin" type="number" min="0" max="90" step="0.25" value="2.5" inputmode="decimal"><span>mm</span></span></label>
     </div>
     <label class="checkline"><input id="auto-fit" type="checkbox" checked><span>自动适配可刻区域</span></label>
@@ -102,18 +132,35 @@ See you again</textarea>
   </section>
   <section id="preview-card" class="preview-panel window-card" aria-label="刻字预览">
     <div class="window-bar preview-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>这枚徽章，独一份</span><span class="window-end" aria-hidden="true">▣</span></div>
-    <div class="preview-toolbar"><div><span class="eyebrow">YOUR INSCRIPTION</span><h2>预览你的专属刻字</h2></div><div class="view-switch" role="group" aria-label="预览模式"><button type="button" data-view="badge" aria-pressed="true">徽章效果</button><button type="button" data-view="paths" aria-pressed="false">刻字稿</button></div></div>
+    <div class="preview-toolbar"><div><span class="eyebrow">YOUR INSCRIPTION</span><h2>预览你的专属刻字</h2></div><div class="view-switch" role="group" aria-label="预览模式"><button type="button" data-view="badge" aria-pressed="false">徽章效果</button><button type="button" data-view="image" aria-pressed="true">图片徽章</button><button type="button" data-view="paths" aria-pressed="false">刻字稿</button></div></div>
+    <div id="badge-settings" class="badge-settings">
+      <div class="badge-source-row"><span id="badge-source">默认徽章 · PREPARE FOR LA</span><button id="reset-badge" class="badge-reset" type="button" disabled>恢复默认图片</button></div>
+      <div class="badge-upload-actions">
+        <label class="import-button" for="badge-front-file">＋ 上传正面<input id="badge-front-file" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only"></label>
+        <label class="import-button" for="badge-back-file">＋ 上传背面<input id="badge-back-file" type="file" accept="image/png,image/jpeg,image/webp" class="sr-only"></label>
+        <button id="remove-badge-back" class="badge-reset" type="button" hidden>使用金属背面</button>
+      </div>
+      <p class="helper">背面会叠加你的刻字，无需上传也可使用。支持 PNG / JPG / WebP，单张不超过 12 MB；仅本次打开有效，图片留在本机。</p>
+      <p id="badge-message" role="status" aria-live="polite" hidden></p>
+    </div>
     <div id="stage" class="stage" aria-busy="false">
       <svg id="preview" viewBox="0 0 25 25" role="img" aria-label="刻字预览" xmlns="http://www.w3.org/2000/svg"></svg>
+      <button id="image-badge" class="image-badge" type="button" aria-label="查看徽章正面" aria-describedby="badge-side-label" hidden>
+        <span class="badge-rotor">
+          <span id="badge-back-face" class="badge-face badge-back"><img id="badge-back-image" alt="" hidden><svg id="badge-back-preview" role="img" aria-label="徽章背面的刻字" xmlns="http://www.w3.org/2000/svg"></svg></span>
+          <span id="badge-front-face" class="badge-face badge-front" aria-hidden="true"><img id="badge-front-image" src="assets/default-badge-front.png" alt="PREPARE FOR LA 2026 游泳纪念徽章正面" draggable="false"></span>
+        </span>
+      </button>
       <div id="empty-preview" class="empty-preview" hidden>在左侧写下你的文案</div>
       <div id="preview-loading" class="preview-loading" role="status" hidden><span class="preview-spinner" aria-hidden="true"></span><strong>正在加载字体并生成预览…</strong><p>首次使用或网络较慢时，请稍候</p></div>
     </div>
+    <div id="badge-flip-toolbar" class="badge-flip-toolbar"><span id="badge-side-label" aria-live="polite">背面 · 刻字预览</span><button id="flip-badge" type="button"><span aria-hidden="true">↻ </span><span id="flip-badge-label">翻到正面</span></button></div>
     <div class="preview-options"><div class="materials" role="group" aria-label="预览材质"><button type="button" data-material="gold" class="swatch gold" aria-label="金色" aria-pressed="true"></button><button type="button" data-material="silver" class="swatch silver" aria-label="银色" aria-pressed="false"></button><span id="material-label">哑光金</span></div><label class="checkline"><input id="show-guides" type="checkbox"><span>显示留白线</span></label></div>
     <div class="measurements"><div><span>画布尺寸</span><strong id="canvas-size">25 × 25 mm</strong></div><div><span>文字实际范围</span><strong id="ink-size">—</strong></div><div><span>排版</span><strong id="layout-info">—</strong></div></div>
-    <p id="preview-note" class="preview-note">屏幕预览已放大。刻字前请按实物尺寸检查细笔画与间距。</p>
+    <p id="preview-note" class="preview-note">点击徽章可翻转查看正反面。画布尺寸为示例，请按实物调整；导出只包含刻字及可选边框。</p>
   </section>
 </main>
-<footer class="footer"><span>你的文案与导入的字体只在本机处理。</span><button id="credits-button" type="button">字体与开源许可</button></footer>
+<footer class="footer"><span>你的文案、图片与导入的字体只在本机处理。</span><button id="credits-button" type="button">字体与开源许可</button></footer>
 <dialog id="system-font-dialog" aria-labelledby="system-font-title">
   <div class="dialog-top"><h2 id="system-font-title">选择系统字体</h2><button id="system-font-close" type="button" aria-label="关闭系统字体选择">×</button></div>
   <p>选择电脑上已安装的字体，直接用于刻字与 SVG 导出。常用中文字体排在前面。</p>
@@ -1096,7 +1143,13 @@ try {
   const imported = new Map();
   const fontOrigins = new Map();
   const systemFonts = { faces: [], listed: false, loading: false, useSerial: 0, activeKey: null, loaded: new Map() };
-  const state = { ready: false, serial: 0, fontSelection: 0, view: 'badge', material: 'gold', result: null, timer: null };
+  const state = { ready: false, serial: 0, fontSelection: 0, view: 'image', material: 'gold', result: null, timer: null,
+    front: false, previewHasText: false };
+  const defaultBadgeFront = 'assets/default-badge-front.png';
+  const badgeImages = {
+    front: { url: null, name: '', serial: 0, loading: false },
+    back: { url: null, name: '', serial: 0, loading: false }
+  };
   const descriptions = {
     'wqy-microhei': '轻量中文黑体 · 覆盖常用中文和英文；缺字可切换完整黑体',
     'cormorant-semibold': '古典衬线 · 比原字重稍厚',
@@ -1225,32 +1278,132 @@ try {
     }
     return `<path fill="#000000" fill-rule="evenodd" d="${d}"/>`;
   }
+  function syncBadgeFace() {
+    $('image-badge').classList.toggle('is-front', state.front);
+    $('image-badge').setAttribute('aria-label', state.front ? '查看徽章背面刻字' : '查看徽章正面');
+    $('badge-front-face').setAttribute('aria-hidden', String(!state.front));
+    $('badge-back-face').setAttribute('aria-hidden', String(state.front));
+    $('badge-side-label').textContent = state.front ? '正面 · 徽章图案' : '背面 · 刻字预览';
+    $('flip-badge-label').textContent = state.front ? '翻到背面' : '翻到正面';
+    $('empty-preview').hidden = state.previewHasText || (state.view === 'image' && state.front);
+  }
+  function flipBadge() {
+    state.front = !state.front;
+    syncBadgeFace();
+  }
+  function badgeMessage(message, error = false) {
+    $('badge-message').textContent = message;
+    $('badge-message').className = error ? 'error' : '';
+    $('badge-message').hidden = !message;
+  }
+  function syncBadgeImages() {
+    const front = badgeImages.front, back = badgeImages.back;
+    $('badge-front-image').src = front.url || defaultBadgeFront;
+    $('badge-front-image').alt = front.url ? '自定义徽章正面' : 'PREPARE FOR LA 2026 游泳纪念徽章正面';
+    $('badge-back-image').hidden = !back.url;
+    if (back.url) $('badge-back-image').src = back.url;
+    else $('badge-back-image').removeAttribute('src');
+    $('badge-source').textContent = (front.url ? `自定义正面 · ${front.name}` : '默认徽章 · PREPARE FOR LA') + (back.url ? ' / 自定义背面' : '');
+    $('badge-source').title = back.url ? `背面：${back.name}` : '';
+    $('reset-badge').disabled = !front.url && !back.url && !front.loading && !back.loading;
+    $('remove-badge-back').hidden = !back.url && !back.loading;
+  }
+  function clearBadgeImage(side) {
+    const image = badgeImages[side];
+    image.serial++;
+    const oldURL = image.url;
+    image.url = null; image.name = ''; image.loading = false;
+    syncBadgeImages();
+    if (oldURL) URL.revokeObjectURL(oldURL);
+  }
+  async function importBadgeImage(event, side) {
+    const file = event.target.files[0];
+    event.target.value = '';
+    if (!file) return;
+    const image = badgeImages[side], serial = ++image.serial;
+    image.loading = true;
+    syncBadgeImages();
+    let url;
+    try {
+      if (!['image/png','image/jpeg','image/webp'].includes(file.type)) throw new Error('请选择 PNG、JPG 或 WebP 图片。');
+      if (file.size > 12 * 1024 * 1024) throw new Error('图片超过 12 MB，请压缩后重试。');
+      badgeMessage(`正在读取${side === 'front' ? '正面' : '背面'}图片…`);
+      url = URL.createObjectURL(file);
+      const decoded = new Image();
+      await new Promise((resolve, reject) => {
+        decoded.onload = resolve;
+        decoded.onerror = () => reject(new Error('无法读取这张图片，请换一张有效图片。'));
+        decoded.src = url;
+      });
+      if (serial !== image.serial) return;
+      if (!decoded.naturalWidth || !decoded.naturalHeight || decoded.naturalWidth * decoded.naturalHeight > 40000000) {
+        throw new Error('图片尺寸过大或无效，请使用 4000 万像素以内的图片。');
+      }
+      const previous = image.url;
+      image.url = url; image.name = file.name;
+      url = null;
+      syncBadgeImages();
+      if (previous) URL.revokeObjectURL(previous);
+      // Keep the canvas size and export geometry unchanged when replacing a photo.
+      state.front = false;
+      drawPreview(state.result, state.result?.config);
+      badgeMessage(`${side === 'front' ? '正面' : '背面'}图片已更新。图片按画布等比居中显示，可点击徽章翻转查看。`);
+    } catch (error) {
+      if (serial === image.serial) badgeMessage(error.message || '图片读取失败，请重试。', true);
+    } finally {
+      if (url) URL.revokeObjectURL(url);
+      if (serial === image.serial) { image.loading = false; syncBadgeImages(); }
+    }
+  }
+  function previewMarkup(positioned, c, mode) {
+    const gold = state.material === 'gold', metal = mode !== 'paths', image = mode === 'image';
+    const fillId = image ? 'image-metal-fill' : 'metal-fill';
+    let markup = '';
+    if (metal && !(image && badgeImages.back.url)) {
+      markup += `<defs><linearGradient id="${fillId}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${gold?'#f3e1b0':'#f5f6f4'}"/><stop offset=".44" stop-color="${gold?'#e0c78a':'#d9dedb'}"/><stop offset="1" stop-color="${gold?'#bda061':'#a9b1ae'}"/></linearGradient></defs>`;
+      markup += makeShape(c, `fill="url(#${fillId})" stroke="${gold?'#ab8e4d':'#9aa39e'}" stroke-width=".08"`, .04);
+      if (image) {
+        markup += '<defs><pattern id="brushed-metal" width=".16" height=".16" patternUnits="userSpaceOnUse"><path d="M0 .04H.16" stroke="#fff" stroke-width=".018" opacity=".16"/><path d="M0 .12H.16" stroke="#705621" stroke-width=".012" opacity=".09"/></pattern></defs>';
+        markup += makeShape(c, 'fill="url(#brushed-metal)"', .04);
+      }
+      markup += makeShape(c, `fill="none" stroke="${gold?'#fff1c6':'#fafbf9'}" stroke-opacity=".7" stroke-width=".04"`, Math.min(c.width,c.height)*.04);
+    } else if (!metal && $('export-border').checked) {
+      markup += makeShape(c, 'fill="none" stroke="#000000" stroke-width=".1"', .05);
+    }
+    if (positioned) markup += pathMarkup(positioned.paths, metal ? (gold ? '#574322' : '#35403a') : '#000000');
+    if ($('show-guides').checked && c.margin * 2 < Math.min(c.width,c.height)) {
+      markup += makeShape(c, 'fill="none" stroke="#a42d69" stroke-width=".05" stroke-dasharray=".4 .3" opacity=".8"', c.margin);
+    }
+    return markup;
+  }
   function drawPreview(positioned, config) {
     let c = config;
     if (!c) {
-      const w = Number($('width').value) || 25;
-      c = { width: w, height: $('shape').value === 'circle' ? w : Number($('height').value) || 25,
+      const w = Math.max(5, Math.min(200, Number($('width').value) || 25));
+      c = { width: w, height: $('shape').value === 'circle' ? w : Math.max(5, Math.min(200, Number($('height').value) || 26.5)),
         circle: $('shape').value === 'circle', margin: Number($('margin').value) || 0 };
     }
     const preview = $('preview');
     preview.setAttribute('viewBox', `0 0 ${c.width} ${c.height}`);
     preview.style.aspectRatio = `${c.width} / ${c.height}`;
     $('stage').classList.toggle('paths', state.view === 'paths');
-    let markup = '';
-    const badge = state.view === 'badge', gold = state.material === 'gold';
-    if (badge) {
-      markup += `<defs><linearGradient id="metal-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${gold?'#f3e1b0':'#f5f6f4'}"/><stop offset=".44" stop-color="${gold?'#e0c78a':'#d9dedb'}"/><stop offset="1" stop-color="${gold?'#bda061':'#a9b1ae'}"/></linearGradient></defs>`;
-      markup += makeShape(c, `fill="url(#metal-fill)" stroke="${gold?'#ab8e4d':'#9aa39e'}" stroke-width=".08"`, .04);
-      markup += makeShape(c, `fill="none" stroke="${gold?'#fff1c6':'#fafbf9'}" stroke-opacity=".7" stroke-width=".04"`, Math.min(c.width,c.height)*.04);
-    } else if ($('export-border').checked) {
-      markup += makeShape(c, 'fill="none" stroke="#000000" stroke-width=".1"', .05);
-    }
-    if (positioned) markup += pathMarkup(positioned.paths, badge ? (gold ? '#574322' : '#35403a') : '#000000');
-    if ($('show-guides').checked && c.margin * 2 < Math.min(c.width,c.height)) {
-      markup += makeShape(c, 'fill="none" stroke="#a42d69" stroke-width=".05" stroke-dasharray=".4 .3" opacity=".8"', c.margin);
-    }
-    preview.innerHTML = markup;
-    $('empty-preview').hidden = !!positioned;
+    const imageMode = state.view === 'image';
+    $('stage').classList.toggle('image-mode', imageMode);
+    preview.toggleAttribute('hidden', imageMode);
+    $('image-badge').hidden = !imageMode;
+    $('badge-settings').hidden = !imageMode;
+    $('badge-flip-toolbar').hidden = !imageMode;
+    document.querySelector('.materials').hidden = state.view === 'paths';
+    $('image-badge').style.setProperty('--badge-ratio', c.width / c.height);
+    $('image-badge').style.setProperty('--badge-radius', c.circle ? '50%' : '3%');
+    $('image-badge').classList.toggle('silver', state.material === 'silver');
+    preview.innerHTML = imageMode ? '' : previewMarkup(positioned, c, state.view);
+    const back = $('badge-back-preview');
+    back.setAttribute('viewBox', `0 0 ${c.width} ${c.height}`);
+    back.innerHTML = imageMode ? previewMarkup(positioned, c, 'image') : '';
+    state.previewHasText = !!positioned;
+    syncBadgeFace();
+    $('preview-note').textContent = imageMode ? '点击徽章可翻转查看正反面。画布尺寸为示例，请按实物调整；导出只包含刻字及可选边框。' : '屏幕预览已放大。刻字前请按实物尺寸检查细笔画与间距。';
     $('canvas-size').textContent = `${fmt(c.width)} × ${fmt(c.height)} mm`;
     $('ink-size').textContent = positioned ? `${positioned.width.toFixed(2)} × ${positioned.height.toFixed(2)} mm` : '—';
   }
@@ -1499,6 +1652,23 @@ try {
       });
     }
     $('font-file').addEventListener('change', importFonts);
+    $('badge-front-file').addEventListener('change', event => importBadgeImage(event, 'front'));
+    $('badge-back-file').addEventListener('change', event => importBadgeImage(event, 'back'));
+    $('image-badge').addEventListener('click', flipBadge);
+    $('flip-badge').addEventListener('click', flipBadge);
+    $('reset-badge').addEventListener('click', () => {
+      clearBadgeImage('front'); clearBadgeImage('back');
+      state.front = false;
+      drawPreview(state.result, state.result?.config);
+      badgeMessage('已恢复默认徽章正面与金属背面。');
+    });
+    $('remove-badge-back').addEventListener('click', () => {
+      clearBadgeImage('back');
+      state.front = false;
+      drawPreview(state.result, state.result?.config);
+      badgeMessage('已切换为金属背面。');
+    });
+    $('badge-front-image').addEventListener('error', () => badgeMessage('正面图片加载失败，请重新上传或检查 assets 图片文件夹。', true));
     $('system-font-open').addEventListener('click', openSystemFonts);
     $('system-font-search').addEventListener('input', populateSystemFonts);
     $('system-font-list').addEventListener('change', () => { $('system-font-use').disabled = !$('system-font-list').value; });
@@ -1511,7 +1681,9 @@ try {
     $('export').addEventListener('click', exportSVG);
     $('show-guides').addEventListener('change', () => drawPreview(state.result, state.result?.config));
     for (const button of document.querySelectorAll('[data-view]')) button.addEventListener('click', () => {
+      if (state.view === button.dataset.view) return;
       state.view = button.dataset.view;
+      if (state.view === 'image') state.front = false;
       document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
       drawPreview(state.result, state.result?.config);
     });

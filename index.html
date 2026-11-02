@@ -17,6 +17,13 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 /* Contain intentionally oversized manual lettering inside its physical artboard. */
 #preview{overflow:hidden}
+.stage[aria-busy=true] #preview,.stage[aria-busy=true] .empty-preview{visibility:hidden}
+.preview-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;pointer-events:none}
+.preview-loading strong{font-size:14px;line-height:1.6}
+.preview-loading p{font-size:11px;line-height:1.7;color:var(--muted)}
+.preview-spinner{width:32px;height:32px;border:3px solid #d5d2c5;border-top-color:var(--ink);border-radius:50%;animation:preview-spin .8s linear infinite}
+@keyframes preview-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.preview-spinner{animation:none}}
 .font-meta{margin-bottom:9px}
 #font{min-height:48px;font-size:16px}
 #font optgroup{color:var(--muted);font-weight:700}
@@ -96,7 +103,11 @@ See you again</textarea>
   <section id="preview-card" class="preview-panel window-card" aria-label="刻字预览">
     <div class="window-bar preview-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>这枚徽章，独一份</span><span class="window-end" aria-hidden="true">▣</span></div>
     <div class="preview-toolbar"><div><span class="eyebrow">YOUR INSCRIPTION</span><h2>预览你的专属刻字</h2></div><div class="view-switch" role="group" aria-label="预览模式"><button type="button" data-view="badge" aria-pressed="true">徽章效果</button><button type="button" data-view="paths" aria-pressed="false">刻字稿</button></div></div>
-    <div id="stage" class="stage"><svg id="preview" viewBox="0 0 25 25" role="img" aria-label="刻字预览" xmlns="http://www.w3.org/2000/svg"></svg><div id="empty-preview" class="empty-preview" hidden>在左侧写下你的文案</div></div>
+    <div id="stage" class="stage" aria-busy="false">
+      <svg id="preview" viewBox="0 0 25 25" role="img" aria-label="刻字预览" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div id="empty-preview" class="empty-preview" hidden>在左侧写下你的文案</div>
+      <div id="preview-loading" class="preview-loading" role="status" hidden><span class="preview-spinner" aria-hidden="true"></span><strong>正在加载字体并生成预览…</strong><p>首次使用或网络较慢时，请稍候</p></div>
+    </div>
     <div class="preview-options"><div class="materials" role="group" aria-label="预览材质"><button type="button" data-material="gold" class="swatch gold" aria-label="金色" aria-pressed="true"></button><button type="button" data-material="silver" class="swatch silver" aria-label="银色" aria-pressed="false"></button><span id="material-label">哑光金</span></div><label class="checkline"><input id="show-guides" type="checkbox"><span>显示留白线</span></label></div>
     <div class="measurements"><div><span>画布尺寸</span><strong id="canvas-size">25 × 25 mm</strong></div><div><span>文字实际范围</span><strong id="ink-size">—</strong></div><div><span>排版</span><strong id="layout-info">—</strong></div></div>
     <p id="preview-note" class="preview-note">屏幕预览已放大。刻字前请按实物尺寸检查细笔画与间距。</p>
@@ -1137,6 +1148,10 @@ try {
     $('status').textContent = message;
     $('status').className = 'status' + (type ? ' ' + type : '');
   }
+  function setPreviewLoading(loading) {
+    $('stage').setAttribute('aria-busy', String(loading));
+    $('preview-loading').hidden = !loading;
+  }
   function invalidate() {
     state.serial++;
     state.result = null;
@@ -1260,6 +1275,7 @@ try {
       const entry = assets.fonts.find(item => item.id === fontId);
       $('font-description').textContent = entry?.description || descriptions[fontId] || `${fontOrigins.get(fontId) || '本地导入'} · ${$('font').selectedOptions[0].textContent}`;
       status(`正在加载「${$('font').selectedOptions[0].textContent}」并排版…`);
+      setPreviewLoading(true);
       const font = await getFont(fontId);
       if (serial !== state.serial) return;
       const layout = await EngravingEngine.layout({ text, font, size: 100, lineHeight: config.lineHeight,
@@ -1290,6 +1306,8 @@ try {
       status(error.message || '排版失败，请重新选择字体。', 'error');
       drawPreview(null, config);
       $('empty-preview').textContent = '暂时无法预览，请检查提示';
+    } finally {
+      if (serial === state.serial) setPreviewLoading(false);
     }
   }
   function schedule() {

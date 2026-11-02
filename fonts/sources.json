@@ -1,0 +1,181 @@
+{
+  "repositoryCommit": "bd8f81ddb5c74d5c8897b36ad88b440266245103",
+  "packaging": "Unmodified original SFNT files, gzip level 9 (mtime 0), base64 JavaScript wrapper; full character sets, default variable-font axes. Existing six font assets remain unchanged.",
+  "fonts": [
+    {
+      "id": "zcoolkuaile",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+      "sourceSha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "sourceBytes": 1514968,
+      "script": "zcoolkuaile.js",
+      "scriptSha256": "7a6c09df13e42afb844e7db776c9cea3f25d7b6924807adaaa3666ecc86e738c",
+      "scriptBytes": 1477256,
+      "characters": 7053,
+      "license": "licenses/zcoolkuaile-OFL.txt",
+      "licenseSha256": "538078469839b4a2e7ad22bef4ebe41681a4e53749bb2a072144024f1d6d703d",
+      "variationAxes": {}
+    },
+    {
+      "id": "longcang",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/longcang/LongCang-Regular.ttf",
+      "sourceSha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+      "sourceBytes": 5162508,
+      "script": "longcang.js",
+      "scriptSha256": "1d826ae2ed947a9710c464c1af981409fd665de8c7a992867667c743a9c7c94b",
+      "scriptBytes": 4614841,
+      "characters": 7015,
+      "license": "licenses/longcang-OFL.txt",
+      "licenseSha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc",
+      "variationAxes": {}
+    },
+    {
+      "id": "mashanzheng",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/mashanzheng/MaShanZheng-Regular.ttf",
+      "sourceSha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "sourceBytes": 5857936,
+      "script": "mashanzheng.js",
+      "scriptSha256": "22d67b966305553fddd267a9bb1f69e36424cfaf92e649ffd01f45854a7ebbb3",
+      "scriptBytes": 5072496,
+      "characters": 7015,
+      "license": "licenses/mashanzheng-OFL.txt",
+      "licenseSha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "variationAxes": {}
+    },
+    {
+      "id": "zcoolxiaowei",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/zcoolxiaowei/ZCOOLXiaoWei-Regular.ttf",
+      "sourceSha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+      "sourceBytes": 6313808,
+      "script": "zcoolxiaowei.js",
+      "scriptSha256": "b58a484dbd06ede177985c8ca3b4c12821797ec5e122ac7796086170eea88cbf",
+      "scriptBytes": 4554157,
+      "characters": 7016,
+      "license": "licenses/zcoolxiaowei-OFL.txt",
+      "licenseSha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a",
+      "variationAxes": {}
+    },
+    {
+      "id": "zcoolqingkehuangyou",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+      "sourceSha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136",
+      "sourceBytes": 8328684,
+      "script": "zcoolqingkehuangyou.js",
+      "scriptSha256": "e78d15988420f8324eba400a7eca53bfe8e954be07ecf2dc387942780f597e34",
+      "scriptBytes": 4680592,
+      "characters": 9429,
+      "license": "licenses/zcoolqingkehuangyou-OFL.txt",
+      "licenseSha256": "f1bce31b817dee01c1e4ef8bc45d8ecb95f01f4abbf0a985007cb3cd0fd8123d",
+      "variationAxes": {}
+    },
+    {
+      "id": "bebasneue",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/bebasneue/BebasNeue-Regular.ttf",
+      "sourceSha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73",
+      "sourceBytes": 61400,
+      "script": "bebasneue.js",
+      "scriptSha256": "98fa9daa7089713ff8049ee1714db285212ba8beea7fb2b428b075c60b64605a",
+      "scriptBytes": 38122,
+      "characters": 461,
+      "license": "licenses/bebasneue-OFL.txt",
+      "licenseSha256": "72082f6cb4d04be2ecf7cc7d9e1e7d73787f0af8a5a278a47cade70c16b78341",
+      "variationAxes": {}
+    },
+    {
+      "id": "lobster",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/lobster/Lobster-Regular.ttf",
+      "sourceSha256": "d6568e697fd50cedc0be04d8aae4127fe95add607e7bff954ca88604be80c205",
+      "sourceBytes": 406076,
+      "script": "lobster.js",
+      "scriptSha256": "ffdb1955d14d5522a5601cb412702d2b6edc607499bd7b839e284616fad182f4",
+      "scriptBytes": 196632,
+      "characters": 828,
+      "license": "licenses/lobster-OFL.txt",
+      "licenseSha256": "88aece7d90f2bb7049719f11619a560af22af3451af141f12aa4f46bb157a99b",
+      "variationAxes": {}
+    },
+    {
+      "id": "playfairdisplay",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/playfairdisplay/PlayfairDisplay[wght].ttf",
+      "sourceSha256": "c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6",
+      "sourceBytes": 300724,
+      "script": "playfairdisplay.js",
+      "scriptSha256": "2ef108cad4325fa1ced9ff19ea29944333567dd7174962d699206bd1fb09616a",
+      "scriptBytes": 180540,
+      "characters": 659,
+      "license": "licenses/playfairdisplay-OFL.txt",
+      "licenseSha256": "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e",
+      "variationAxes": {
+        "wght": 400.0
+      }
+    },
+    {
+      "id": "pacifico",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/pacifico/Pacifico-Regular.ttf",
+      "sourceSha256": "5b6c0d5334a7bf77dea52b975c5a0c408878c0f7115ed5b6fb151f634b7bf701",
+      "sourceBytes": 329380,
+      "script": "pacifico.js",
+      "scriptSha256": "c53f8a65e9fe4ce02b67ab62a32653f0346b4626cd9a640988400cd453c333d7",
+      "scriptBytes": 192809,
+      "characters": 805,
+      "license": "licenses/pacifico-OFL.txt",
+      "licenseSha256": "a47e5daeda73568969395c656823102678f2eefb0d7d7ecb47aac4cc17e42204",
+      "variationAxes": {}
+    },
+    {
+      "id": "caveat",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/caveat/Caveat[wght].ttf",
+      "sourceSha256": "0bdb6b660482d31531b3945849fba5916b3ef8695da7024a9e6b9ee3c4157988",
+      "sourceBytes": 403648,
+      "script": "caveat.js",
+      "scriptSha256": "e709de75e56cde8a37f2db00e19aa07aa8fb6b06d7a9684ba38e3d29df90e634",
+      "scriptBytes": 289215,
+      "characters": 753,
+      "license": "licenses/caveat-OFL.txt",
+      "licenseSha256": "1f9d81d094273d82f3898a1ee8b598a717d050ecbf5ff7bede105b704880157b",
+      "variationAxes": {
+        "wght": 400.0
+      }
+    },
+    {
+      "id": "anton",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/anton/Anton-Regular.ttf",
+      "sourceSha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+      "sourceBytes": 170812,
+      "script": "anton.js",
+      "scriptSha256": "6d965cf55d2b7842be666fdfea5ad05ed982964914903891038fade1092175fa",
+      "scriptBytes": 106030,
+      "characters": 978,
+      "license": "licenses/anton-OFL.txt",
+      "licenseSha256": "eee1d24ff8f553eb732237c7dd9b945a78313ed49ad6de02872a47277741b44a",
+      "variationAxes": {}
+    },
+    {
+      "id": "zhimangxing",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/zhimangxing/ZhiMangXing-Regular.ttf",
+      "sourceSha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+      "sourceBytes": 4063532,
+      "script": "zhimangxing.js",
+      "scriptSha256": "db9d79e95a01c73c12fb85ed0af92ac57add3db70bda0cbdbb524a67048f3bd3",
+      "scriptBytes": 3625140,
+      "characters": 7015,
+      "license": "licenses/zhimangxing-OFL.txt",
+      "licenseSha256": "10947328199e369a3e6b4a67e8e5507ed99d5bbb264a1f156415aa9b665e4d15",
+      "variationAxes": {}
+    },
+    {
+      "id": "dancingscript",
+      "source": "https://github.com/google/fonts/blob/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/dancingscript/DancingScript[wght].ttf",
+      "sourceSha256": "21808625578fe8d8cd10cb684be546dca077b27cd03a53a2f1ec11dc743c924c",
+      "sourceBytes": 133636,
+      "script": "dancingscript.js",
+      "scriptSha256": "5573a4b51eb114605a178801920ea79320a2db6d674369db67b28393d71bca15",
+      "scriptBytes": 99342,
+      "characters": 559,
+      "license": "licenses/dancingscript-OFL.txt",
+      "licenseSha256": "6f090277c00af96651ce6dbcc38ff1591047a3bffef486e80b6a32e8276a8201",
+      "variationAxes": {
+        "wght": 400.0
+      }
+    }
+  ]
+}
